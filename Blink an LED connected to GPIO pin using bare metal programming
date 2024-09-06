@@ -1,4 +1,4 @@
-c
+//c
 #include "stm32f1xx.h"  // Adjust for your STM32 series
 
 void delay(uint32_t time) {
