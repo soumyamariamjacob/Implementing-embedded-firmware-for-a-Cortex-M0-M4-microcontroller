@@ -1,0 +1,25 @@
+c
+#include "stm32f1xx.h"  // Adjust for your STM32 series
+
+void delay(uint32_t time) {
+    while (time--) {
+        // Simple delay loop
+    }
+}
+
+int main(void) {
+    // Enable GPIOC clock
+    RCC->APB2ENR |= RCC_APB2ENR_IOPCEN;
+    
+    // Configure PC13 as output
+    GPIOC->CRH &= ~(GPIO_CRH_MODE13 | GPIO_CRH_CNF13);
+    GPIOC->CRH |= GPIO_CRH_MODE13_1; // Output mode, max speed 2 MHz
+    
+    while (1) {
+        // Toggle PC13
+        GPIOC->ODR ^= GPIO_ODR_ODR13;
+        
+        // Delay
+        delay(500000);
+    }
+}
